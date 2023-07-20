@@ -1,0 +1,7 @@
+{
+	"C_Cpp.dimInactiveRegions": false,
+	"files.associations": {
+		"signal.h": "c",
+		"minitalk.h": "c"
+	}
+}
