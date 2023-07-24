@@ -6,34 +6,38 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 12:13:12 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/07/21 16:42:05 by nsakanou         ###   ########.fr       */
+/*   Updated: 2023/07/24 18:06:07y nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int	main(int ac, char **av)
+void	send(pid_t pid, char *str)
 {
-	if (ac != 2)	
-	 {
-	 	 fprintf(stderr, "Usage: %s <server_pid>\n", av[0]);
-	  	 return (1);
-	 }
-	pid_t server_pid = atoi(av[1]);
-	if (server_pid <= 0)
+	int		i;
+	int		bit;
+
+	i = 0;
+	while (str[i] != '\0')
 	{
-		fprintf(stderr, "Invalid server PID\n");
-		return (1);
+		bit = 0;
+		while (bit < 8)
+		{
+			if ((str[i] >> bit) & 0b00000001)
+				kill(pid, SIGUSR1);
+			else
+				kill(pid, SIGUSR2);
+			bit++;
+		}
+		i++;
 	}
-	if (kill(server_pid, SIGUSR1) == -1)
-	{
-		fprintf(stderr, "Error sending signal to server: %s\n");
-		return (1);
-	}
-	else
-    {
-        printf("Signal successfully sent to the server.\n");
-    }
-	return (0);
 }
 
+int	main(int argc, char **argv)
+{
+	pid_t	pid;
+
+	pid = ft_atoi(argv[1]);
+	send(pid, argv[2]);
+	return (0);
+}

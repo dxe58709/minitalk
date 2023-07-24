@@ -6,26 +6,31 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:46:30 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/07/21 16:42:09 by nsakanou         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:33:38 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 #include <stdio.h>
 #include <unistd.h>
-#include <signal.h>
 
 void	signal_handler(int signum)
 {
-	static int	i = 0;
-	char		c = 0;
+	static int	i;
+	char		c;
+
+	i = 0;
+	c = 0;
 
 	if (signum == SIGUSR1)
 		c = '1';
 	else if (signum == SIGUSR2)
 		c = '0';
 	c <<= 1;
-	c |= (signum == SIGUSR2) ? 1 : 0;
+	if (signum == SIGUSR2)
+		c |= 1; //ビットを１に設定する
+	else
+		c &= ~1; //0に設定する、ビットをクリアに
 		i++;
 	printf("Received bit: %c\n", c);
 }

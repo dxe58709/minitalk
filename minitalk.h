@@ -6,7 +6,7 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 14:59:45 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/07/20 16:46:19 by nsakanou         ###   ########.fr       */
+/*   Updated: 2023/07/24 18:16:07 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@
 # include <sys/socket.h>
 # include <signal.h>
 
-# define SIGUSR1 1
-# define SIGUSR2 0
-
-
+int	ft_atoi(const char *str);
 
 #endif
