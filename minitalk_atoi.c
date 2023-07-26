@@ -6,12 +6,13 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 14:51:42 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/07/20 14:58:57 by nsakanou         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:24:23 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
+/*
 static int	ft_positiv(const char *str, int *count)
 {
 	int	i;
@@ -27,6 +28,12 @@ static int	ft_positiv(const char *str, int *count)
 	}
 	return (i);
 }
+*/
+
+int	ft_isdigit(int c)
+{
+	return (c >= '0' && c <= '9');
+}
 
 int	ft_atoi(const char *str)
 {
@@ -37,10 +44,10 @@ int	ft_atoi(const char *str)
 	i = 0;
 	nb = 0;
 	count = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32 || str[i] == '-' || str[i] == '+')
 		i++;
-	if (ft_positiv(str + i, &count) == 1)
-		i++;
+	//if (ft_positiv(str + i, &count) == 1)
+	//	i++;
 	while (ft_isdigit(str[i]))
 	{
 		if (count == 1 && ((nb > LONG_MAX / 10)
