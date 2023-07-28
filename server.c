@@ -6,18 +6,13 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:46:30 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/07/26 17:37:56 by nsakanou         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:55:54 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 #include <stdio.h>
 #include <unistd.h>
-
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
 
 void	signal_handler(int signum)
 {
@@ -35,7 +30,7 @@ void	signal_handler(int signum)
 	if (i == 8)
 	{
 		i = 0;
-		ft_putchar_fd(c, 1);//受信した８ビットを標準出力に出力
+		write(STDOUT_FILENO, &c, 1);//受信した８ビットを標準出力に出力
 		c = 0;
 	}
 	else//まだ８ビット受信していない場合
@@ -44,12 +39,9 @@ void	signal_handler(int signum)
 
 int	main(void)
 {
-	pid_t	pid;
-
-	pid = getpid();
-	printf("Server PID: %d\n", pid);
-
+	printf("Server PID: %d\n", getpid());
+	signal(SIGUSR1, signal_handler);
+	signal(SIGUSR2, signal_handler);
 	while (1)
 		pause();
-	return (0);
 }

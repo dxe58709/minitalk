@@ -6,13 +6,13 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 12:13:12 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/07/26 17:37:52 by nsakanou         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:55:56 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	ft_send(pid_t pid, char *str)
+void	ft_send(const pid_t pid, char *str)
 {
 	int		i;
 	int		bit;
@@ -33,12 +33,34 @@ void	ft_send(pid_t pid, char *str)
 		i++;
 	}
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	pid_t	pid;
 
+	if (argc != 3)
+		return (1);
 	pid = ft_atoi(argv[1]);
 	ft_send(pid, argv[2]);
 	return (0);
+}*/
+int main(int argc, char **argv)
+{
+    pid_t   pid;
+
+    if (argc != 3)
+    {
+        write(STDOUT_FILENO, "Invalid server PID", 18);
+        return (1);
+    }
+
+    pid = ft_atoi(argv[1]);
+    if (pid <= 0)
+    {
+        write(STDOUT_FILENO, "Invalid server PID", 18);
+        return (1);
+    }
+
+    ft_send(pid, argv[2]);
+    return (0);
 }
