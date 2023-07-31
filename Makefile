@@ -6,15 +6,15 @@
 #    By: nsakanou <nsakanou@student.42tokyo.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/02 12:16:39 by nsakanou          #+#    #+#              #
-#    Updated: 2023/07/31 15:28:12 by nsakanou         ###   ########.fr        #
+#    Updated: 2023/07/31 16:07:50 by nsakanou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SERVER = server
 CLIENT = client
 
-SERVER_SRC = src/server.c
-CLIENT_SRC = src/client.c src/minitalk_atoi.c
+SERVER_SRC = server.c
+CLIENT_SRC = client.c minitalk_atoi.c
 
 HEADER = includes
 
@@ -25,9 +25,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-NAME = $(SERVER) $(CLIENT)
-
-all : $(NAME)
+all : $(SERVER) $(CLIENT)
 
 $(SERVER) : $(SERVER_OBJ)
 	$(CC) $(CFLAGS) -o $(SERVER) $(SERVER_OBJ)

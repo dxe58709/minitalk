@@ -6,7 +6,7 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 12:13:12 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/07/31 14:41:49 by nsakanou         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:15:16 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void	ft_send(const pid_t pid, char *str)
 			else
 				kill_status = kill(pid, SIGUSR2);
 			if (kill_status == -1)
+			{
 				write(STDOUT_FILENO, "kill error\n", 11);
+				return;
+			}
 			bit++;
 			usleep(500);
 		}
@@ -54,11 +57,21 @@ int	main(int argc, char **argv)
 	pid_t	pid;
 
 	if (argc != 3)
-        write(STDOUT_FILENO, "Invalid arguments\n", 18);
-	if (ft_strlen(argv[1]) > 5)
-        write(STDOUT_FILENO, "Invalid PID\n", 12);
-
+	{    
+		write(STDOUT_FILENO, "Invalid arguments\n", 18);
+		return (0);
+	}
+	if (ft_strlen(argv[1]) > 5)//7?
+	{
+		write(STDOUT_FILENO, "Invalid PID\n", 12);
+		return (0);
+	}
 	pid = ft_atoi(argv[1]);
+	if (pid == 0)
+	{
+		write(STDOUT_FILENO, "Invalid PID\n", 12);
+		return (0);
+	}
 	ft_send(pid, argv[2]);
 	return (0);
 }
