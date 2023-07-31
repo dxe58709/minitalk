@@ -6,29 +6,45 @@
 #    By: nsakanou <nsakanou@student.42tokyo.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/02 12:16:39 by nsakanou          #+#    #+#              #
-#    Updated: 2023/07/28 16:55:49 by nsakanou         ###   ########.fr        #
+#    Updated: 2023/07/31 15:28:12 by nsakanou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = client
+SERVER = server
+CLIENT = client
+
+SERVER_SRC = src/server.c
+CLIENT_SRC = src/client.c src/minitalk_atoi.c
+
+HEADER = includes
+
+SERVER_OBJ = $(SERVER_SRC:.c=.o)
+CLIENT_OBJ = $(CLIENT_SRC:.c=.o)
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+RM = rm -f
 
-SRCS = client.c server.c
-
-OBJS = $(SRCS:.c=.o)
+NAME = $(SERVER) $(CLIENT)
 
 all : $(NAME)
 
-%.o : %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(SERVER) : $(SERVER_OBJ)
+	$(CC) $(CFLAGS) -o $(SERVER) $(SERVER_OBJ)
 
-$(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+$(CLIENT) : $(CLIENT_OBJ)
+	$(CC) $(CFLAGS) -o $(CLIENT) $(CLIENT_OBJ)
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER)
 
 clean:
-	rm -f $(OBJS)
+	$(RM) $(SERVER_OBJ) $(CLIENT_OBJ)
+	
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(SERVER) $(CLIENT)
 
 re: fclean all
+
+.PHONY: all clean fclean re
+
