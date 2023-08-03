@@ -30,7 +30,7 @@ void	ft_send(const pid_t pid, char *str)
 				kill_status = kill(pid, SIGUSR2);
 			if (kill_status == -1)
 			{
-				write(STDOUT_FILENO, "kill error\n", 11);
+				write(STDERR_FILENO, "kill error\n", 11);
 				return;
 			}
 			bit++;
@@ -46,32 +46,36 @@ size_t	ft_strlen(const char *str)
 
 	i = 0;
 	while (str[i] != '\0')
-	{
 		i++;
-	}
 	return (i);
+}
+
+bool check_args(int argc, char **argv, pid_t *pid)
+{
+      if (argc != 3)
+      {    
+              write(STDERR_FILENO, "Invalid arguments\n", 18);
+              return (false);
+      }       
+      if (ft_strlen(argv[1]) > 5)
+      {
+              write(STDERR_FILENO, "Invalid PID\n", 12);
+              return (false);
+      }       
+      pid = ft_atoi(argv[1]);
+      if (pid == 0)
+      {
+              write(STDERR_FILENO, "Invalid PID\n", 12);
+              return (false);
+      }       
+	return (true);
 }
 
 int	main(int argc, char **argv)
 {
 	pid_t	pid;
-
-	if (argc != 3)
-	{    
-		write(STDOUT_FILENO, "Invalid arguments\n", 18);
-		return (0);
-	}
-	if (ft_strlen(argv[1]) > 5)//7?
-	{
-		write(STDOUT_FILENO, "Invalid PID\n", 12);
-		return (0);
-	}
-	pid = ft_atoi(argv[1]);
-	if (pid == 0)
-	{
-		write(STDOUT_FILENO, "Invalid PID\n", 12);
-		return (0);
-	}
+	if (!check_args(argc, argv, &pid))
+		return (EXIT_FAILURE);
 	ft_send(pid, argv[2]);
 	return (0);
 }

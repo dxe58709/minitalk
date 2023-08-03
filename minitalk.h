@@ -20,6 +20,7 @@
 # include <sys/types.h>
 # include <sys/socket.h>
 # include <signal.h>
+# include <stdbool.h>
 
 int	ft_atoi(const char *str);
 
