@@ -6,7 +6,7 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 12:13:12 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/07/31 16:15:16 by nsakanou         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:37:42 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,15 @@ bool check_args(int argc, char **argv, pid_t *pid)
               write(STDERR_FILENO, "Invalid arguments\n", 18);
               return (false);
       }       
-      if (ft_strlen(argv[1]) > 5)
+      size_t	pid_len;
+	  pid_len = ft_strlen(argv[1]);
+	  if (pid_len < 3 || pid_len > 5)
       {
               write(STDERR_FILENO, "Invalid PID\n", 12);
               return (false);
       }       
-      pid = ft_atoi(argv[1]);
-      if (pid == 0)
+      *pid = (pid_t)ft_atoi(argv[1]);
+      if (*pid == 0)
       {
               write(STDERR_FILENO, "Invalid PID\n", 12);
               return (false);
