@@ -12,34 +12,6 @@
 
 #include "minitalk.h"
 
-void	ft_send(const pid_t pid, char *str)
-{
-	int	i;
-	int	bit;
-	int	kill_status;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		bit = 0;
-		while (bit < 8)
-		{
-			if ((str[i] >> bit) & 0b00000001)
-				kill_status = kill(pid, SIGUSR1);
-			else
-				kill_status = kill(pid, SIGUSR2);
-			if (kill_status == -1)
-			{
-				write(STDERR_FILENO, "kill error\n", 11);
-				return;
-			}
-			bit++;
-			usleep(500);
-		}
-		i++;
-	}
-}
-
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
@@ -73,6 +45,33 @@ bool check_args(int argc, char **argv, pid_t *pid)
 	return (true);
 }
 
+void    ft_send(const pid_t pid, char *str)
+{
+        int     i;
+        int     bit_shift;
+        int     kill_status;
+        
+        i = 0;
+        while (str[i] != '\0')
+        {
+                bit_shift = 0;
+                while (bit_shift < 8)
+                {
+                        if ((str[i] >> bit_shift) & 0b00000001)
+                                kill_status = kill(pid, SIGUSR1);
+                        else    
+                                kill_status = kill(pid, SIGUSR2);
+                        if (kill_status == -1)
+                        {
+                                write(STDERR_FILENO, "kill error\n", 11);
+                                return;
+                        }       
+                        bit_shift++;
+                        usleep(500);
+                }       
+                i++;    
+        }       
+}
 int	main(int argc, char **argv)
 {
 	pid_t	pid;

@@ -11,17 +11,11 @@
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <stdio.h>
-#include <unistd.h>
 
 void	signal_handler(int signum)
 {
-	static int				i;//ビットの受信数をカウントする変数
-	static unsigned char	c;//受信したビットを格納する変数
-
-	i = 0;
-	c = 0;
-
+	static int	i = 0;//ビットの受信数をカウントする変数
+	static unsigned char	c = 0;//受信したビットを格納する変数
 	if (signum == SIGUSR1)
 		c |= (1 << i);//i番目のビットを1にセット
 	else if (signum == SIGUSR2)
@@ -44,4 +38,5 @@ int	main(void)
 	signal(SIGUSR2, signal_handler);
 	while (1)
 		pause();
+	return 0;
 }
