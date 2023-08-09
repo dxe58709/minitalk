@@ -6,7 +6,7 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:46:30 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/07/31 16:16:27 by nsakanou         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:24:52 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 void	signal_handler(int signum)
 {
-	static int	i = 0;//ビットの受信数をカウントする変数
-	static unsigned char	c = 0;//受信したビットを格納する変数
+	static int				i;
+	static unsigned char	c;
+
+	i = 0;
+	c = 0;
 	if (signum == SIGUSR1)
-		c |= (1 << i);//i番目のビットを1にセット
-	else if (signum == SIGUSR2)
-		c &= ~(1 << i);//i番目のビットを０にセット
+		c |= (1 << i);
 	i++;
 	if (i == 8)
 	{
+		write(STDOUT_FILENO, &c, 1);
 		i = 0;
-		write(STDOUT_FILENO, &c, 1);//受信した８ビットを標準出力に出力
 		c = 0;
 	}
-	else//まだ８ビット受信していない場合
-		c <<= 1;//受信したビットをcの次のビットにシフト
+	kill(client, SIGUSR2);
 }
 
 int	main(void)
@@ -38,5 +38,5 @@ int	main(void)
 	signal(SIGUSR2, signal_handler);
 	while (1)
 		pause();
-	return 0;
+	return (0);
 }
