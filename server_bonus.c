@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:46:30 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/08/17 15:02:08 by nsakanou         ###   ########.fr       */
+/*   Updated: 2023/08/17 14:33:54 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 void	signal_handler(int signum)
 {
@@ -28,7 +28,7 @@ void	signal_handler(int signum)
 		i = 0;
 		c = 0;
 	}
-	kill(client, SIGUSR2);//c?
+	kill(client, SIGUSR2);
 }
 
 int	main(void)

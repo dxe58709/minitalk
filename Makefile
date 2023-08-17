@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nsakanou <nsakanou@student.42tokyo.>       +#+  +:+       +#+         #
+#    By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/02 12:16:39 by nsakanou          #+#    #+#              #
-#    Updated: 2023/07/31 16:07:50 by nsakanou         ###   ########.fr        #
+#    Updated: 2023/08/17 15:08:59 by nsakanou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,4 +45,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-

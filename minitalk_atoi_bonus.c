@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   minitalk_atoi.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 14:46:30 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/08/17 15:02:08 by nsakanou         ###   ########.fr       */
+/*   Created: 2023/07/20 14:51:42 by nsakanou          #+#    #+#             */
+/*   Updated: 2023/08/09 18:25:47 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	signal_handler(int signum)
+int	ft_isdigit(int c)
 {
-	static int				i;
-	static unsigned char	c;
-
-	i = 0;
-	c = 0;
-	if (signum == SIGUSR1)
-		c |= (1 << i);
-	i++;
-	if (i == 8)
-	{
-		write(STDOUT_FILENO, &c, 1);
-		i = 0;
-		c = 0;
-	}
-	kill(client, SIGUSR2);//c?
+	return (c >= '0' && c <= '9');
 }
 
-int	main(void)
+bool	is_space(char c)
 {
-	printf("Server PID: %d\n", getpid());
-	signal(SIGUSR1, signal_handler);
-	signal(SIGUSR2, signal_handler);
-	while (1)
-		pause();
-	return (0);
+	return ((c >= 9 && c <= 13) || c == 32);
+}
+
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	nb;
+
+	i = 0;
+	nb = 0;
+	if (is_space(str[i]))
+		return (1);
+	if (str[i] == '-' || str[i] == '+')
+		return (1);
+	while (ft_isdigit(str[i]))
+	{
+		nb = nb * 10 + (str[i] - '0');
+		i++;
+	}
+	return (nb);
 }
