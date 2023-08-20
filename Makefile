@@ -6,7 +6,7 @@
 #    By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/02 12:16:39 by nsakanou          #+#    #+#              #
-#    Updated: 2023/08/20 16:45:04 by nsakanou         ###   ########.fr        #
+#    Updated: 2023/08/20 20:41:12 by nsakanou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,19 +25,24 @@ CLIENT_OBJ = $(CLIENT_SRC:.c=.o)
 B_SERVER_OBJ = $(B_SERVER_SRC:.c=.o)
 B_CLIENT_OBJ = $(B_CLIENT_SRC:.c=.o)
 
+# Printf+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+PRINTF_DIR	=	printf
+PRINTF		=	$(PRINTF_DIR)/libftprintf.a
+
+
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I ./printf
 RM = rm -f
 
 ifdef WITH_BONUS
-	SERVER_OBJ += $(B_SERVER_OBJ)
-	CLIENT_OBJ += $(B_CLIENT_OBJ)
+	SERVER_OBJ = $(B_SERVER_OBJ)
+	CLIENT_OBJ = $(B_CLIENT_OBJ)
 endif
 
 all : $(SERVER) $(CLIENT)
 
-$(SERVER) : $(SERVER_OBJ)
-	$(CC) $(CFLAGS) -o $(SERVER) $(SERVER_OBJ)
+$(SERVER) : $(SERVER_OBJ) $(PRINTF)
+	$(CC) $(CFLAGS) -o $(SERVER) $(SERVER_OBJ) $(PRINTF)
 
 $(CLIENT) : $(CLIENT_OBJ)
 	$(CC) $(CFLAGS) -o $(CLIENT) $(CLIENT_OBJ)
@@ -46,9 +51,11 @@ $(CLIENT) : $(CLIENT_OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
+	@ make -C $(PRINTF_DIR) clean
 	$(RM) $(SERVER_OBJ) $(CLIENT_OBJ) $(B_SERVER_OBJ) $(B_CLIENT_OBJ)
 	
 fclean: clean
+	@ make -C $(PRINTF_DIR) fclean
 	$(RM) $(SERVER) $(CLIENT)
 
 bonus:
@@ -57,3 +64,6 @@ bonus:
 re: fclean all
 
 .PHONY: all clean fclean re
+
+$(PRINTF):
+	make -C $(PRINTF_DIR) all

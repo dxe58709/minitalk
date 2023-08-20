@@ -6,13 +6,14 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 14:59:45 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/08/20 17:15:36 by nsakanou         ###   ########.fr       */
+/*   Updated: 2023/08/20 20:19:45 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
 # define MINITALK_H
 
+# include "ft_printf.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
