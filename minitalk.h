@@ -6,7 +6,7 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 14:59:45 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/07/31 15:29:40 by nsakanou         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:15:36 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@
 # include <signal.h>
 # include <stdbool.h>
 
-int	ft_atoi(const char *str);
+bool	check_args(int argc, char **argv, pid_t *pid);
+void	ft_send(const pid_t pid, char *str);
+
+void	signal_handler(int signum);
+
+int		ft_isdigit(int c);
+bool	is_space(char c);
+int		ft_atoi(const char *str);
 
 #endif
