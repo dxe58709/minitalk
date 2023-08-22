@@ -6,7 +6,7 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 12:13:12 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/08/20 17:14:09 by nsakanou         ###   ########.fr       */
+/*   Updated: 2023/08/22 14:39:42 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ void	ft_send(const pid_t pid, char *str)
 				kill_status = kill(pid, SIGUSR1);
 			else
 				kill_status = kill(pid, SIGUSR2);
+			if (kill_status = -1)//PID=123なのにPID=1234でも送れる時などのエラー処理
+			{
+				write(STDERR_FILENO, "Different PID\n", 14);
+			}
 			bit_shift++;
 			usleep(200);
 		}

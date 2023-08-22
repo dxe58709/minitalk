@@ -6,7 +6,7 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:46:30 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/08/20 20:15:29 by nsakanou         ###   ########.fr       */
+/*   Updated: 2023/08/22 14:40:18 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	signal_handler(int signum)
 		write(STDOUT_FILENO, &c, 1);
 		bit_position = 0;
 		c = 0;
+		return ;
 	}
 }
 
