@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 12:13:12 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/08/22 16:12:57 by nsakanou         ###   ########.fr       */
+/*   Updated: 2024/01/24 20:27:13 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../includes/minitalk_bonus.h"
 
 bool	check_args(int argc, char **argv, pid_t *pid)
 {
@@ -30,26 +30,24 @@ bool	check_args(int argc, char **argv, pid_t *pid)
 
 void	ft_send(const pid_t pid, char *str)
 {
+	int	i;
 	int	bit_shift;
 	int	kill_status;
 
-	while (*str != '\0')
+	i = 0;
+	while (str[i] != '\0')
 	{
 		bit_shift = 0;
 		while (bit_shift < 8)
 		{
-			if ((*str >> bit_shift) & 0b00000001)
+			if ((str[i] >> bit_shift) & 0b00000001)
 				kill_status = kill(pid, SIGUSR1);
 			else
 				kill_status = kill(pid, SIGUSR2);
-			if (kill_status = -1)//PID=123なのにPID=1234でも送れる時などのエラー処理
-			{
-				write(STDERR_FILENO, "Different PID\n", 14);
-			}
 			bit_shift++;
 			usleep(200);
 		}
-		str++;
+		i++;
 	}
 }
 

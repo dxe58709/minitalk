@@ -6,11 +6,11 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 14:51:42 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/08/22 16:08:52 by nsakanou         ###   ########.fr       */
+/*   Updated: 2024/01/24 20:46:08 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../includes/minitalk.h"
 
 int	ft_isdigit(int c)
 {
@@ -24,7 +24,7 @@ int	is_space(char c)
 
 int	int_max(int c)
 {
-	return (c > "2147483647" || c < '0');
+	return (c > INT_MAX || c < '0');
 }
 
 int	ft_atoi(const char *str)
@@ -45,7 +45,7 @@ int	ft_atoi(const char *str)
 		nb = nb * 10 + (str[i] - '0');
 		i++;
 	}
-	if (!ft_isdigit(nb))//PID=2983aaaaが来た時弾く
+	if (!ft_isdigit(nb))
 		return (-1);
 	return (nb);
 }

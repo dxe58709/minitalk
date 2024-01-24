@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk_atoi.c                                    :+:      :+:    :+:   */
+/*   minitalk_atoi_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 14:51:42 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/08/09 18:25:47 by nsakanou         ###   ########.fr       */
+/*   Updated: 2024/01/24 20:27:47 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../includes/minitalk.h"
 
 int	ft_isdigit(int c)
 {

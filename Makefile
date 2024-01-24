@@ -6,18 +6,18 @@
 #    By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/02 12:16:39 by nsakanou          #+#    #+#              #
-#    Updated: 2023/08/21 14:25:36 by nsakanou         ###   ########.fr        #
+#    Updated: 2024/01/24 20:21:39 by nsakanou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SERVER = server
 CLIENT = client
 
-SERVER_SRC = server.c
-CLIENT_SRC = client.c minitalk_atoi.c
+SERVER_SRC = srcs/server.c
+CLIENT_SRC = srcs/client.c srcs/minitalk_atoi.c
 
-B_SERVER_SRC = server_bonus.c
-B_CLIENT_SRC = client_bonus.c minitalk_atoi_bonus.c
+B_SERVER_SRC = bonus/server_bonus.c
+B_CLIENT_SRC = bonus/client_bonus.c bonus/minitalk_atoi_bonus.c
 
 SERVER_OBJ = $(SERVER_SRC:.c=.o)
 CLIENT_OBJ = $(CLIENT_SRC:.c=.o)

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:46:30 by nsakanou          #+#    #+#             */
-/*   Updated: 2023/08/22 14:40:18 by nsakanou         ###   ########.fr       */
+/*   Updated: 2024/01/24 20:27:31 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../includes/minitalk_bonus.h"
 
 void	signal_handler(int signum)
 {
@@ -25,7 +25,6 @@ void	signal_handler(int signum)
 		write(STDOUT_FILENO, &c, 1);
 		bit_position = 0;
 		c = 0;
-		return ;
 	}
 }
 
