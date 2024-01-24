@@ -27,7 +27,6 @@ As this project uses the `ft_printf` you will have to clone it on the root of th
 git clone https://github.com/dxe58709/ft_printf
 ```
 
-
 Compile the executable files with:
 
 ```zsh
@@ -35,16 +34,10 @@ Compile the executable files with:
 make
 ```
 
-You can also compile the files for the server or the client individually:
-
+Or use the following command to compile it with the bonus files:
 ```zsh
 #!/bin/zsh
-make server
-```
-
-```zsh
-#!/bin/zsh
-make client
+make　bonus
 ```
 
 ## Usage
