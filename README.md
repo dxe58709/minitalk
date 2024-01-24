@@ -20,6 +20,14 @@ As this project uses the `libft` you will have to clone it on the root of the re
 git clone https://github.com/dxe58709/libft
 ```
 
+As this project uses the `ft_printf` you will have to clone it on the root of the repository as well:
+
+```zsh
+#!/bin/zsh
+git clone https://github.com/dxe58709/ft_printf
+```
+
+
 Compile the executable files with:
 
 ```zsh
