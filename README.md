@@ -24,7 +24,7 @@ As this project uses the `ft_printf` you will have to clone it on the root of th
 
 ```zsh
 #!/bin/zsh
-git clone https://github.com/dxe58709/ft_printf
+git clone https://github.com/dxe58709/printf
 ```
 
 Compile the executable files with:
