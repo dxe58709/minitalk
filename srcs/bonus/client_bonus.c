@@ -6,11 +6,11 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 12:13:12 by nsakanou          #+#    #+#             */
-/*   Updated: 2024/01/24 20:27:13 by nsakanou         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:21:23 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minitalk_bonus.h"
+#include "../../includes/minitalk_bonus.h"
 
 bool	check_args(int argc, char **argv, pid_t *pid)
 {

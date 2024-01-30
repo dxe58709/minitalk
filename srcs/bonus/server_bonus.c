@@ -6,11 +6,11 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:46:30 by nsakanou          #+#    #+#             */
-/*   Updated: 2024/01/24 20:27:31 by nsakanou         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:21:50 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minitalk_bonus.h"
+#include "../../includes/minitalk_bonus.h"
 
 void	signal_handler(int signum)
 {

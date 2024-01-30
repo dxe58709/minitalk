@@ -6,7 +6,7 @@
 #    By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/02 12:16:39 by nsakanou          #+#    #+#              #
-#    Updated: 2024/01/24 20:21:39 by nsakanou         ###   ########.fr        #
+#    Updated: 2024/01/30 16:19:44 by nsakanou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ CLIENT = client
 SERVER_SRC = srcs/server.c
 CLIENT_SRC = srcs/client.c srcs/minitalk_atoi.c
 
-B_SERVER_SRC = bonus/server_bonus.c
-B_CLIENT_SRC = bonus/client_bonus.c bonus/minitalk_atoi_bonus.c
+B_SERVER_SRC = srcs/bonus/server_bonus.c
+B_CLIENT_SRC = srcs/bonus/client_bonus.c srcs/bonus/minitalk_atoi_bonus.c
 
 SERVER_OBJ = $(SERVER_SRC:.c=.o)
 CLIENT_OBJ = $(CLIENT_SRC:.c=.o)
@@ -29,15 +29,18 @@ B_CLIENT_OBJ = $(B_CLIENT_SRC:.c=.o)
 PRINTF_DIR	=	printf
 PRINTF		=	$(PRINTF_DIR)/libftprintf.a
 
+INCLUDES = -I ./printf
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I ./printf
+CFLAGS = -Wall -Wextra -Werror $(INCLUDES)
 RM = rm -f
 
 ifdef WITH_BONUS
 	SERVER_OBJ = $(B_SERVER_OBJ)
 	CLIENT_OBJ = $(B_CLIENT_OBJ)
 endif
+
+.PHONY: all clean fclean re bonus
 
 all : $(SERVER) $(CLIENT)
 
@@ -63,7 +66,6 @@ bonus:
 
 re: fclean all
 
-.PHONY: all clean fclean re
 
 $(PRINTF):
 	make -C $(PRINTF_DIR) all

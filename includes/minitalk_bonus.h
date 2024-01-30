@@ -6,7 +6,7 @@
 /*   By: nsakanou <nsakanou@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 14:59:45 by nsakanou          #+#    #+#             */
-/*   Updated: 2024/01/24 20:25:13 by nsakanou         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:59:43 by nsakanou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_send(const pid_t pid, char *str);
 void	signal_handler(int signum);
 
 int		ft_isdigit(int c);
-bool	is_space(char c);
 int		ft_atoi(const char *str);
 
 #endif
